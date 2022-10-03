@@ -1,0 +1,12 @@
+<app-stock-form></app-stock-form>
+
+<ng-container *ngIf="symbols$ | async as symbols; else loading">
+  <div *ngIf="symbols.length === 0">Nothing to show.</div>
+
+  <app-single-stock
+    *ngFor="let symbol of symbols"
+    [symbol]="symbol"
+  ></app-single-stock>
+</ng-container>
+
+<ng-template #loading> Hang tight, we're loading... </ng-template>
