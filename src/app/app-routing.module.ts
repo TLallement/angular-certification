@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StockListComponent } from './features/stock-list/stock-list.component';
 import { StockSentimentComponent } from './features/stock-sentiment/stock-sentiment.component';
-
+import { StockTrackerComponent } from './features/stock-tracker/stock-tracker.component';
 
 const APP_ROUTES: Routes = [
-  { path: '', component: StockListComponent },
+  { path: '', component: StockTrackerComponent },
   { path: 'sentiment/:symbol', component: StockSentimentComponent },
 ];
 

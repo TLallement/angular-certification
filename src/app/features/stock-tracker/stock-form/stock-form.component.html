@@ -8,15 +8,15 @@
         name="symbol"
         formControlName="symbol"
       />
-    </section>
 
-    <button
-      id="trackBtn"
-      [disabled]="!stockForm.valid"
-      type="button"
-      (click)="onSave()"
-    >
-      Track Stock
-    </button>
+      <button
+        id="trackBtn"
+        [disabled]="!stockForm.valid"
+        type="button"
+        (click)="onSave()"
+      >
+        Track Stock
+      </button>
+    </section>
   </form>
 </div>

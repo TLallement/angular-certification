@@ -1,0 +1,6 @@
+OK SINGLE
+<div>{{ stock.symbol }} {{ stock.description }}</div>
+<div>Change today : {{ stock.dp | percent }}</div>
+<div>Opening price : {{ stock.o | currency: 'USD' }}</div>
+<div>Current price : {{ stock.c | currency: 'USD' }}</div>
+<div>High price : {{ stock.h | currency: 'USD' }}</div>
