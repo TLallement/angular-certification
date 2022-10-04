@@ -1,11 +1,9 @@
-OK LIST
-<ng-container *ngIf="stockService.stocks$ | async as stocks; else loading">
-  <div *ngIf="stocks.length === 0">Nothing to show.</div>
-
+<div *ngIf="stockService.stocks$ | async as stocks; else loading" class="row">
   <app-single-stock
     *ngFor="let stock of stocks"
     [stock]="stock"
+    class="col-6"
+    style="padding-top:2rem"
   ></app-single-stock>
-</ng-container>
-
+</div>
 <ng-template #loading> Hang tight, we're loading... </ng-template>

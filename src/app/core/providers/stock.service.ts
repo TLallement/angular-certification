@@ -50,7 +50,7 @@ export class StockService {
         pc: val.resultTwo.pc,
         t: val.resultTwo.t,
       };
-      this.stocks$.next({ ...this.stocks$.value, ...stock });
+      this.stocks$.next([ ...this.stocks$.value, stock ]);
     });
   }
 

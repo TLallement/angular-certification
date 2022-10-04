@@ -10,12 +10,9 @@ import { Stock } from '../../../shared/models/stock.model';
   styleUrls: ['./stock-list.component.css'],
 })
 export class StockListComponent implements OnInit {
-
-  constructor(
-    public stockService: StockService
-  ) {}
+  constructor(public stockService: StockService) {}
 
   ngOnInit() {
-    this.stockService.stocks$.subscribe();
+    this.stockService.stocks$.subscribe(() => console.log('test'));
   }
 }

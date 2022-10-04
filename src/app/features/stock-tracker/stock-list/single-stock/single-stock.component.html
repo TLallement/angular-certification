@@ -1,6 +1,39 @@
-OK SINGLE
-<div>{{ stock.symbol }} {{ stock.description }}</div>
-<div>Change today : {{ stock.dp | percent }}</div>
-<div>Opening price : {{ stock.o | currency: 'USD' }}</div>
-<div>Current price : {{ stock.c | currency: 'USD' }}</div>
-<div>High price : {{ stock.h | currency: 'USD' }}</div>
+<div class="card">
+  <div class="card-body pt-3">
+    <h3 class="card-title">{{ stock.description }}</h3>
+    <h4 class="card-subtitle text-muted pb-2">{{ stock.symbol }}</h4>
+    <div class="row">
+      <div class="col-8">
+        <div class="card-text row">
+          <div class="col">
+            <b>Change today :</b>
+            <p>{{ stock.dp }}%</p>
+            <p></p>
+          </div>
+          <div class="col">
+            <b>Opening price :</b>
+            <p>{{ stock.o | currency: 'USD' }}</p>
+          </div>
+        </div>
+        <div class="card-text row">
+          <div class="col">
+            <b>Current price :</b>
+            <p>{{ stock.c | currency: 'USD' }}</p>
+          </div>
+          <div class="col">
+            <b>High price :</b>
+            <p>{{ stock.h | currency: 'USD' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <i
+          [ngClass]="stock.dp >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'"
+          class="bi"
+        ></i>
+        <button class="btn btn-info">See sentiment detail</button>
+      </div>
+      <button class="btn btn-danger">X</button>
+    </div>
+  </div>
+</div>
