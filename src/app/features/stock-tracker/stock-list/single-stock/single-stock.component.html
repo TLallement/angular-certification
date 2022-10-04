@@ -31,9 +31,17 @@
           [ngClass]="stock.dp >= 0 ? 'bi-arrow-up' : 'bi-arrow-down'"
           class="bi"
         ></i>
-        <button class="btn btn-info">See sentiment detail</button>
+        <button (click)="onDetail()" class="btn btn-info">
+          See sentiment detail
+        </button>
       </div>
-      <button class="btn btn-danger">X</button>
+      <button
+        [attr.id]="'remove' + stock.symbol"
+        (click)="onRemove()"
+        class="btn btn-danger"
+      >
+        X
+      </button>
     </div>
   </div>
 </div>

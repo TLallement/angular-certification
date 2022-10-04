@@ -3,14 +3,14 @@
   <form (ngSubmit)="onSave()" [formGroup]="stockForm">
     <section>
       <input
-        id="stockInput"
+        [attr.id]="'stockInput'"
         type="text"
         name="symbol"
         formControlName="symbol"
       />
 
       <button
-        id="trackBtn"
+        [attr.id]="'trackBtn'"
         [disabled]="!stockForm.valid"
         type="button"
         (click)="onSave()"
