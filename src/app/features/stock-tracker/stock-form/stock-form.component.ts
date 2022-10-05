@@ -6,7 +6,7 @@ import { StockForm, StockFormGroup } from './stock-form';
 @Component({
   selector: 'app-stock-form',
   templateUrl: './stock-form.component.html',
-  styleUrls: ['./stock-form.component.scss'],
+  styleUrls: ['./stock-form.component.css'],
 })
 export class StockFormComponent implements OnInit {
   stockForm: FormGroup<StockFormGroup>;

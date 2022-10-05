@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin } from 'rxjs';
-import { Stock, StockName } from '../../shared/models/stock.model';
+import {
+  Stock,
+  StockCallData,
+  StockCallName,
+  StockName,
+} from '../../shared/models/stock.model';
 import { LocalStorageService } from './local-storage.service';
 import { StockDataService } from './stock-data.service';
 

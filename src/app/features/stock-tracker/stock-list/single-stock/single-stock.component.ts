@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { StockService } from '../../../../core/providers/stock.service';
 import { Stock } from '../../../../shared/models/stock.model';
 

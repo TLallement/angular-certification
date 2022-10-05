@@ -10,7 +10,7 @@ const NB_MONTHS: number = 3;
 @Component({
   selector: 'app-stock-sentiment',
   templateUrl: './stock-sentiment.component.html',
-  styleUrls: ['./stock-sentiment.component.css'],
+  styleUrls: ['./stock-sentiment.component.css']
 })
 export class StockSentimentComponent implements OnInit {
   symbol: string = '';
