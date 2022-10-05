@@ -1,10 +1,12 @@
-import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, forkJoin } from 'rxjs';
 import { Stock, StockName } from '../../shared/models/stock.model';
 import { LocalStorageService } from './local-storage.service';
 import { StockDataService } from './stock-data.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StockService {
   stocks$: BehaviorSubject<Stock[]> = new BehaviorSubject([]);
   hasLoaded$: BehaviorSubject<boolean> = new BehaviorSubject(true);
