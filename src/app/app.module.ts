@@ -5,13 +5,14 @@ import { CoreModule } from './core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { StockSentimentComponent } from './features/stock-sentiment/stock-sentiment.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StockListComponent } from './features/stock-tracker/stock-list/stock-list.component';
 import { StockFormComponent } from './features/stock-tracker/stock-form/stock-form.component';
 import { SingleStockComponent } from './features/stock-tracker/stock-list/single-stock/single-stock.component';
 import { StockTrackerComponent } from './features/stock-tracker/stock-tracker.component';
+import { StockSentimentComponent } from './features/stock-sentiment/stock-sentiment.component';
+import { StockService } from './core/providers/stock.service';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { StockTrackerComponent } from './features/stock-tracker/stock-tracker.co
     StockSentimentComponent,
     StockTrackerComponent,
   ],
-  providers: [],
+  providers: [StockService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

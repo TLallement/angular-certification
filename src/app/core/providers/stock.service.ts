@@ -1,19 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
-import {
-  Stock,
-  StockCallData,
-  StockCallName,
-  StockName,
-} from '../../shared/models/stock.model';
+import { Stock, StockName } from '../../shared/models/stock.model';
 import { LocalStorageService } from './local-storage.service';
 import { StockDataService } from './stock-data.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class StockService {
   stocks$: BehaviorSubject<Stock[]> = new BehaviorSubject([]);
+  hasLoaded$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -26,45 +20,42 @@ export class StockService {
 
   addSymbol(symbol: string) {
     this.localStorageService.addItem('symbol', symbol);
+    this.getCurrentStocks(symbol);
+  }
+
+  removeSymbol(symbol: string) {
+    this.localStorageService.removeItem('symbol', symbol);
+    let tmpStocks: Stock[] = this.stocks$
+      .getValue()
+      .filter((item) => item.symbol !== symbol);
+    this.stocks$.next(tmpStocks);
   }
 
   getCurrentStocks(symbol: string) {
+    this.hasLoaded$.next(false);
     forkJoin({
       resultOne: this.stockDataService.getCompanyName(symbol),
       resultTwo: this.stockDataService.getData(symbol),
-    }).subscribe((val) => {
-      console.log(val);
-      let tmpStockName: StockName = val.resultOne.result.find((item) => item.symbol === symbol);
-      console.log(tmpStockName);
+    }).subscribe((value) => {
+      let tmpStockName: StockName = value.resultOne.result.find(
+        (item) => item.symbol === symbol
+      );
       let stock: Stock = {
         symbol: symbol,
-        description: tmpStockName.description,
-        displaySymbol: tmpStockName.displaySymbol,
-        type: tmpStockName.type,
-        c: val.resultTwo.c,
-        d: val.resultTwo.d,
-        dp: val.resultTwo.dp,
-        h: val.resultTwo.h,
-        l: val.resultTwo.l,
-        o: val.resultTwo.o,
-        pc: val.resultTwo.pc,
-        t: val.resultTwo.t,
+        description: tmpStockName?.description,
+        displaySymbol: tmpStockName?.displaySymbol,
+        type: tmpStockName?.type,
+        c: value.resultTwo.c,
+        d: value.resultTwo.d,
+        dp: value.resultTwo.dp,
+        h: value.resultTwo.h,
+        l: value.resultTwo.l,
+        o: value.resultTwo.o,
+        pc: value.resultTwo.pc,
+        t: value.resultTwo.t,
       };
-      this.stocks$.next([ ...this.stocks$.value, stock ]);
+      this.stocks$.next([...this.stocks$.getValue(), stock]);
+      this.hasLoaded$.next(true);
     });
   }
-
-  /*getCompanyName(symbol: string) {
-    this.stockDataService
-      .getCompanyName(symbol)
-      .subscribe((result: StockCallName) => {
-        console.log(result);
-      });
-  }
-
-  getData(symbol: string) {
-    this.stockDataService.getData(symbol).subscribe((result: StockCallData) => {
-      console.log(result);
-    });
-  }*/
 }

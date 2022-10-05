@@ -11,6 +11,7 @@ export interface Stock {
   o?: number;
   pc?: number;
   t?: number;
+  data?: StockInsiderSentiment[];
 }
 
 export interface Stock {
@@ -53,4 +54,17 @@ export interface StockCallData {
   o: number;
   pc: number;
   t: number;
+}
+
+export interface StockInsiderSentiment {
+  symbol: string;
+  year: number;
+  month: number;
+  change: number;
+  mspr: number;
+}
+
+export interface StockCallInsiderSentiment {
+  symbol: string;
+  data: StockInsiderSentiment[];
 }

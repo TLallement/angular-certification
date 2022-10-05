@@ -12,7 +12,7 @@ export class SingleStockComponent {
 
   constructor(private stockService: StockService) {}
 
-  delete(){
-
+  onRemove() {
+    this.stockService.removeSymbol(this.stock.symbol);
   }
 }
